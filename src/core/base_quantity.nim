@@ -1,17 +1,24 @@
-# file: base_quantities.nim
+#[ 
+  @file: 
+    base_quantity.nim
+  @author: 
+    Lorenzo Liuzzo
+  @description: 
+    This file contains the definition of the 'BaseQuantity'.
+    The physical information is stored in the form of exponents of the base quantities of the SI system.
+  @date: 
+    2023-09-13
+  @copywrite: 
+    2023 Lorenzo Liuzzo - GPL3
+]#
 
-## Define a template meta-structure containing dimensional information
 type
-  BaseQuantity = object
-    length, time, mass, temperature, electric_current, substance_amount, luminous_intensity: int
-
-## Define base_quantity based on the SI system
-const length = BaseQuantity(length: 1, time: 0, mass: 0, temperature: 0, electric_current: 0, substance_amount: 0, luminous_intensity: 0)
-const time = BaseQuantity(length: 0, time: 1, mass: 0, temperature: 0, electric_current: 0, substance_amount: 0, luminous_intensity: 0)
-const mass = BaseQuantity(length: 0, time: 0, mass: 1, temperature: 0, electric_current: 0, substance_amount: 0, luminous_intensity: 0)
-const temperature = BaseQuantity(length: 0, time: 0, mass: 0, temperature: 1, electric_current: 0, substance_amount: 0, luminous_intensity: 0)
-const electric_current = BaseQuantity(length: 0, time: 0, mass: 0, temperature: 0, electric_current: 1, substance_amount: 0, luminous_intensity: 0)
-const substance_amount = BaseQuantity(length: 0, time: 0, mass: 0, temperature: 0, electric_current: 0, substance_amount: 1, luminous_intensity: 0)
-const luminous_intensity = BaseQuantity(length: 0, time: 0, mass: 0, temperature: 0, electric_current: 0, substance_amount: 0, luminous_intensity: 1)
-
-export BaseQuantity, length, time, mass, temperature, electric_current, substance_amount, luminous_intensity
+  BaseQuantity* = object
+    name*: string
+    length*:             int = 0
+    time*:               int = 0
+    mass*:               int = 0
+    temperature*:        int = 0
+    electric_current*:   int = 0
+    substance_amount*:   int = 0
+    luminous_intensity*: int = 0

@@ -1,3 +1,16 @@
+#[ 
+  @file: 
+    quantity.nim
+  @author: 
+    Lorenzo Liuzzo
+  @description: 
+    This file contains the definition of the 'Quantity'.
+  @date: 
+    2023-09-13
+  @copywrite: 
+    2023 Lorenzo Liuzzo - GPL3
+]#
+
 import base_quantity as bs
 import prefix
 

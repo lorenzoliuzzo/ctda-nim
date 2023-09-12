@@ -1,35 +1,57 @@
-# file: prefix.nim
+#[ 
+  @file: 
+    prefix.nim
+  @author: 
+    Lorenzo Liuzzo
+  @description: 
+    This file contains the definition of the 'Prefix'
+  @date: 
+    2023-09-13
+  @copywrite: 
+    2023 Lorenzo Liuzzo - GPL3
+]#
 
 type
   Prefix = object
-    symbol: char        # Character representation (e.g., "k")
-    factor: float        # Value as a power of ten (e.g., 3.0 for Kilo)
+    name: string    # Name of the prefix (e.g., "kilo")
+    symbol: char    # Character representation (e.g., "k")
+    factor: float64 # Value as a power of ten (e.g., 3.0 for Kilo)
 
-# Create a table to store the prefixes
-const deca = Prefix(symbol: 'D', factor: 1e1)
-const hecto = Prefix(symbol: 'h', factor: 1e2)
-const kilo = Prefix(symbol: 'k', factor: 1e3)
-const mega = Prefix(symbol: 'M', factor: 1e6)
-const giga = Prefix(symbol: 'G', factor: 1e9)
-const tera = Prefix(symbol: 'T', factor: 1e12)
-const peta = Prefix(symbol: 'P', factor: 1e15)
-const exa = Prefix(symbol: 'E', factor: 1e18)
-const zetta = Prefix(symbol: 'Z', factor: 1e21)
-const yotta = Prefix(symbol: 'Y', factor: 1e24)
-const deci = Prefix(symbol: 'd', factor: 1e-1)
-const centi = Prefix(symbol: 'c', factor: 1e-2)
-const milli = Prefix(symbol: 'm', factor: 1e-3)
-const micro = Prefix(symbol: 'u', factor: 1e-6)
-const nano = Prefix(symbol: 'n', factor: 1e-9)
-const pico = Prefix(symbol: 'p', factor: 1e-12)
-const femto = Prefix(symbol: 'f', factor: 1e-15)
-const atto = Prefix(symbol: 'a', factor: 1e-18)
-const zepto = Prefix(symbol: 'z', factor: 1e-21)
-const yocto = Prefix(symbol: 'y', factor: 1e-20)
+proc newPrefix(name: string, symbol: char, factor: float64): Prefix =
+  result.name = name
+  result.symbol = symbol
+  result.factor = factor
 
-const prefix_map = [
-  yocto, zepto, atto, femto, pico, nano, micro, milli, centi, deci,
-  deca, hecto, kilo, mega, giga, tera, peta, exa, zetta, yotta
-]
+const
+  SI_Prefix_List: seq[Prefix] = @[
+    newPrefix("deca", 'D', 1e1),
+    newPrefix("hecto", 'h', 1e2),
+    newPrefix("kilo", 'k', 1e3),
+    newPrefix("mega", 'M', 1e6),
+    newPrefix("giga", 'G', 1e9),
+    newPrefix("tera", 'T', 1e12),
+    newPrefix("peta", 'P', 1e15),
+    newPrefix("exa", 'E', 1e18),
+    newPrefix("zetta", 'Z', 1e21),
+    newPrefix("yotta", 'Y', 1e24),
+    newPrefix("deci", 'd', 1e-1),
+    newPrefix("centi", 'c', 1e-2),
+    newPrefix("milli", 'm', 1e-3),
+    newPrefix("micro", 'u', 1e-6),
+    newPrefix("nano", 'n', 1e-9),
+    newPrefix("pico", 'p', 1e-12),
+    newPrefix("femto", 'f', 1e-15),
+    newPrefix("atto", 'a', 1e-18),
+    newPrefix("zepto", 'z', 1e-21),
+    newPrefix("yocto", 'y', 1e-24)
+  ]
 
-export Prefix, prefix_map, deca, hecto, kilo, mega, giga, tera, peta, exa, zetta, yotta, deci, centi, milli, micro, nano, pico, femto, atto, zepto, yocto
+proc findPrefix(name: string): Prefix =
+  for prefix in SI_Prefix_List:
+    if prefix.name == name:
+      return prefix
+  raise newException(Exception, "Prefix not found: " & name)
+
+# Example usage:
+let myPrefix: Prefix = findPrefix("kilo")
+echo myPrefix  # Output: Prefix(name: "kilo", symbol: 'k', factor: 1000.0)
