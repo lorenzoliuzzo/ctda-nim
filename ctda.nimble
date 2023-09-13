@@ -13,4 +13,7 @@ task hello, "This is a hello task":
 
 task test, "Runs the test suite":
   withDir "tests":
-    exec "nim c -r --gc:refc base_quantity.nim"
+    exec "nim c -r --gc:refc base_quantity.nim --verbose"
+    exec "nim c -r --gc:refc prefix.nim --verbose"
+
+# export PATH=/home/lorenzo/.nimble/bin:$PATH

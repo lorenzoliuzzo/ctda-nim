@@ -1,15 +1,13 @@
-import ../src/core/base_quantity
-import ../src/basis as bs
-# import ctda
-# from ctda import BaseQuantity
+from ../src/core/base_quantity import createBaseQuantity, SIBasis, SIDerivedBasis, Basis
 
-let velocity = BaseQuantity(name: "velocity", length: 1, time: -1)
+echo "SI Base Quantities"
+for base in SIBasis:
+    echo base
 
-assert velocity.length == 1
-assert velocity.time == -1
+echo "SI Derived Quantities"
+for base in SIDerivedBasis:
+    echo base
 
-echo velocity
-
-let massBase = bs.mass
-echo massBase
-assert massBase.mass == 1
+echo "Base Quantities"
+for base in Basis:
+    echo base
