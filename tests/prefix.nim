@@ -1,8 +1,9 @@
-from ../src/core/prefix import createPrefix, SIPrefixes
+import ../src/core/prefix as prefix
 
-createPrefix(minute, "min", 60)
+prefix.defPrefix(minute, "min", 60)
 echo minute
 
 echo "SIPrefixes:"
-for prefix in SIPrefixes:
+for prefix in prefix.SIPrefixes:
     echo prefix
+

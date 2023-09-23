@@ -1,4 +1,4 @@
-from ../src/core/base_quantity import createBaseQuantity, SIBasis, SIDerivedBasis, Basis
+from ../src/core/base_quantity import defBaseQuantity, SIBasis, SIDerivedBasis, Basis
 
 echo "SI Base Quantities"
 for base in SIBasis:
